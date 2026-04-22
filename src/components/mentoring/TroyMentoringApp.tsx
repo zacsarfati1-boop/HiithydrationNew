@@ -45,13 +45,6 @@ const PROGRAMS = [
     description: 'Get clean and sober with real accountability and a clear plan.',
     weeks: ['Stop the Cycle', 'Control Cravings', 'Change Your Thinking', 'Clean and Sober'],
   },
-  {
-    title: 'Gambling + Drugs & Alcohol',
-    subtitle: '30-Day Combined Mentoring',
-    description:
-      'Both are part of your story — comprehensive support to tackle them together.',
-    weeks: ['Tackle both cycles', 'Dual urge control', 'Mindset shift', 'Integrated plan'],
-  },
 ];
 
 const SITUATION_OPTIONS = [
@@ -192,7 +185,7 @@ export default function TroyMentoringApp() {
           {/* Choose your program */}
           <h2 className="text-2xl font-bold text-center mb-2">Choose your program</h2>
           <p className="text-gray-400 text-sm text-center mb-6">
-            All 3 programs are the same price. Private 1-on-1 only — not group sessions.
+            Both programs are the same price. Private 1-on-1 only — not group sessions.
           </p>
           <div className="space-y-5 mb-12">
             {PROGRAMS.map((program, index) => (
@@ -261,7 +254,7 @@ export default function TroyMentoringApp() {
           </div>
 
           <p className="text-center text-gray-500 text-xs pb-10">
-            All 3 programs are the same price. Private 1-on-1 only — not group sessions.
+            Both programs are the same price. Private 1-on-1 only — not group sessions.
           </p>
         </div>
       </div>

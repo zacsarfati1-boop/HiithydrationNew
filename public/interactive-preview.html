@@ -169,19 +169,6 @@
     <button class="btn btn-gold" onclick="startQualifier(1)">Apply for this program</button>
   </div>
 
-  <div class="card">
-    <div class="card-label">30-Day Combined Mentoring</div>
-    <h3>Gambling + Drugs &amp; Alcohol</h3>
-    <p>Both are part of your story — comprehensive support to tackle them together.</p>
-    <div class="week-grid">
-      <div class="week-item"><b>W1</b> Tackle both cycles</div>
-      <div class="week-item"><b>W2</b> Dual urge control</div>
-      <div class="week-item"><b>W3</b> Mindset shift</div>
-      <div class="week-item"><b>W4</b> Integrated plan</div>
-    </div>
-    <button class="btn btn-gold" onclick="startQualifier(2)">Apply for this program</button>
-  </div>
-
   <h2 class="section" style="margin-top:40px;margin-bottom:20px;">How it works</h2>
   <div class="steps">
     <div class="step"><div class="step-num">1</div><div><div class="step-title">Apply in 2 minutes</div><div class="step-desc">A short application so Troy can review your situation before you speak.</div></div></div>
@@ -244,7 +231,6 @@
     <label class="form-label">Program</label>
     <button class="opt-btn" id="prog-0" onclick="selectProg(0)">Gambling Recovery</button>
     <button class="opt-btn" id="prog-1" onclick="selectProg(1)">Drug &amp; Alcohol Recovery</button>
-    <button class="opt-btn" id="prog-2" onclick="selectProg(2)">Gambling + Drugs &amp; Alcohol</button>
   </div>
 
   <div class="form-group">
@@ -356,7 +342,7 @@
 </div>
 
 <script>
-  const PROGRAMS = ['Gambling Recovery', 'Drug & Alcohol Recovery', 'Gambling + Drugs & Alcohol'];
+  const PROGRAMS = ['Gambling Recovery', 'Drug & Alcohol Recovery'];
   let selectedProgram = 0;
   let qualStep = 0;
   let situationSelected = -1;
