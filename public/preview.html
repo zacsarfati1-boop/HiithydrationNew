@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Troy Mentoring Preview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #08090d; color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  .page { max-width: 430px; margin: 0 auto; padding: 40px 20px; }
+
+  /* badge */
+  .badge-wrap { display: flex; justify-content: center; margin-bottom: 32px; }
+  .badge { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); border-radius: 999px; padding: 6px 16px; }
+
+  /* hero */
+  h1 { font-size: 36px; font-weight: 800; text-align: center; line-height: 1.2; margin-bottom: 16px; }
+  .subtext { color: #d1d5db; text-align: center; font-size: 15px; line-height: 1.6; margin-bottom: 32px; }
+
+  /* photo */
+  .photo-wrap { display: flex; justify-content: center; margin-bottom: 40px; }
+  .photo { width: 144px; height: 144px; border-radius: 50%; border: 4px solid #fbbf24; background: #1f2937; display: flex; align-items: center; justify-content: center; color: #6b7280; font-size: 13px; overflow: hidden; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* cards */
+  .card { background: #111827; border: 1px solid #1f2937; border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+  .card-label { font-size: 11px; font-weight: 700; color: #fbbf24; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+  .card h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+  .card p { color: #d1d5db; font-size: 14px; line-height: 1.5; margin-bottom: 20px; }
+  .week-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 24px; }
+  .week-item { background: #08090d; border: 1px solid #374151; border-radius: 8px; padding: 8px 12px; font-size: 12px; color: #9ca3af; }
+  .week-item span { color: #fbbf24; font-weight: 700; }
+  .btn-primary { width: 100%; background: #fbbf24; color: #000; font-weight: 700; font-size: 15px; border: none; border-radius: 12px; padding: 14px; cursor: pointer; }
+  .btn-primary:hover { background: #fcd34d; }
+
+  /* included list */
+  .incl-list { list-style: none; }
+  .incl-list li { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; color: #d1d5db; font-size: 14px; }
+  .amber-icon { color: #fbbf24; flex-shrink: 0; margin-top: 2px; font-size: 16px; }
+
+  /* section titles */
+  .section-title { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 8px; }
+  .section-sub { color: #9ca3af; font-size: 14px; text-align: center; margin-bottom: 24px; }
+
+  /* how it works */
+  .step { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
+  .step-num { width: 36px; height: 36px; border-radius: 50%; background: #fbbf24; color: #000; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-title { font-weight: 700; color: #fff; font-size: 15px; }
+  .step-desc { color: #9ca3af; font-size: 13px; margin-top: 2px; }
+
+  /* footer note */
+  .foot-note { text-align: center; color: #4b5563; font-size: 12px; padding-bottom: 40px; }
+
+  /* divider */
+  .divider { border: none; border-top: 1px solid #1f2937; margin: 48px auto; max-width: 430px; }
+  .screen-label { text-align: center; color: #374151; font-size: 12px; margin-bottom: 16px; }
+
+  /* qualifier */
+  .back-btn { display: flex; align-items: center; gap: 8px; color: #9ca3af; font-size: 14px; margin-bottom: 32px; background: none; border: none; cursor: pointer; }
+  .back-arrow { font-size: 18px; }
+  .prog-badge { font-size: 11px; font-weight: 700; color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); border-radius: 999px; padding: 4px 12px; display: inline-block; margin-bottom: 24px; }
+  .qual-q { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+  .qual-sub { color: #9ca3af; font-size: 14px; margin-bottom: 32px; }
+  .option-btn { width: 100%; text-align: left; background: #111827; border: 1px solid #374151; border-radius: 12px; padding: 16px 20px; color: #fff; font-size: 14px; font-weight: 500; margin-bottom: 12px; cursor: pointer; }
+  .option-btn.selected { background: rgba(251,191,36,0.1); border-color: #fbbf24; }
+  .btn-secondary { width: 100%; background: #111827; border: 1px solid #374151; border-radius: 12px; padding: 16px; color: #fff; font-weight: 600; font-size: 15px; cursor: pointer; }
+
+  /* progress bar */
+  .progress-wrap { margin-top: 48px; }
+  .progress-labels { display: flex; justify-content: space-between; color: #6b7280; font-size: 12px; margin-bottom: 8px; }
+  .progress-track { height: 6px; background: #1f2937; border-radius: 999px; overflow: hidden; }
+  .progress-fill { height: 100%; background: #fbbf24; border-radius: 999px; }
+
+  /* apply form */
+  .form-label { display: block; font-size: 14px; font-weight: 500; color: #d1d5db; margin-bottom: 6px; }
+  .form-label span { color: #f87171; }
+  .form-label .opt { color: #6b7280; font-weight: 400; }
+  .form-input { width: 100%; background: #111827; border: 1px solid #374151; border-radius: 12px; padding: 12px 16px; color: #fff; font-size: 14px; outline: none; font-family: inherit; }
+  .form-input::placeholder { color: #6b7280; }
+  .form-group { margin-bottom: 16px; }
+  textarea.form-input { resize: none; }
+  .foot-small { text-align: center; color: #6b7280; font-size: 12px; margin-top: 16px; padding-bottom: 40px; }
+
+  /* confirmed */
+  .confirmed-wrap { text-align: center; padding: 64px 20px; max-width: 430px; margin: 0 auto; }
+  .check-icon { font-size: 64px; color: #fbbf24; margin-bottom: 24px; }
+  .confirmed-wrap h1 { font-size: 30px; font-weight: 800; margin-bottom: 12px; }
+  .confirmed-wrap .sub { color: #9ca3af; font-size: 14px; margin-bottom: 40px; }
+  .next-step { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
+  .step-circle { width: 28px; height: 28px; border-radius: 50%; background: rgba(251,191,36,0.15); border: 1px solid #fbbf24; color: #fbbf24; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .next-step-title { font-weight: 600; color: #fff; font-size: 14px; }
+  .next-step-desc { color: #9ca3af; font-size: 12px; margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ LANDING ══════════════ -->
+<div class="page">
+
+  <div class="badge-wrap">
+    <span class="badge">1-on-1 Mentoring with Troy</span>
+  </div>
+
+  <h1>Ready to make a real change?</h1>
+  <p class="subtext">30 days of private, personalised 1-on-1 support to stop gambling, stop using, or both — with a real plan and daily accountability.</p>
+
+  <div class="photo-wrap">
+    <div class="photo">troy.jpg</div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:17px;font-weight:700;margin-bottom:16px;">What's included</h2>
+    <ul class="incl-list">
+      <li><span class="amber-icon">▶</span><span>2 x private 1-on-1 calls per week (8 total over 30 days)</span></li>
+      <li><span class="amber-icon">💬</span><span>Daily text or voice check-ins with Troy</span></li>
+      <li><span class="amber-icon">💡</span><span>Practical tools for urges, triggers and blocks</span></li>
+      <li><span class="amber-icon">📋</span><span>A simple 4-week plan — one clear focus each week</span></li>
+    </ul>
+  </div>
+
+  <h2 class="section-title">Choose your program</h2>
+  <p class="section-sub">All 3 programs are the same price. Private 1-on-1 only — not group sessions.</p>
+
+  <!-- Program 1 -->
+  <div class="card">
+    <div class="card-label">30-Day 1-on-1 Mentoring</div>
+    <h3>Gambling Recovery</h3>
+    <p>Stop the cycle, control urges, and build a life without gambling.</p>
+    <div class="week-grid">
+      <div class="week-item"><span>W1</span> Stop the Cycle</div>
+      <div class="week-item"><span>W2</span> Control Urges</div>
+      <div class="week-item"><span>W3</span> Change Your Thinking</div>
+      <div class="week-item"><span>W4</span> Stay on Track</div>
+    </div>
+    <button class="btn-primary">Apply for this program</button>
+  </div>
+
+  <!-- Program 2 -->
+  <div class="card">
+    <div class="card-label">30-Day 1-on-1 Mentoring</div>
+    <h3>Drug &amp; Alcohol Recovery</h3>
+    <p>Get clean and sober with real accountability and a clear plan.</p>
+    <div class="week-grid">
+      <div class="week-item"><span>W1</span> Stop the Cycle</div>
+      <div class="week-item"><span>W2</span> Control Cravings</div>
+      <div class="week-item"><span>W3</span> Change Your Thinking</div>
+      <div class="week-item"><span>W4</span> Clean and Sober</div>
+    </div>
+    <button class="btn-primary">Apply for this program</button>
+  </div>
+
+  <!-- Program 3 -->
+  <div class="card">
+    <div class="card-label">30-Day Combined Mentoring</div>
+    <h3>Gambling + Drugs &amp; Alcohol</h3>
+    <p>Both are part of your story — comprehensive support to tackle them together.</p>
+    <div class="week-grid">
+      <div class="week-item"><span>W1</span> Tackle both cycles</div>
+      <div class="week-item"><span>W2</span> Dual urge control</div>
+      <div class="week-item"><span>W3</span> Mindset shift</div>
+      <div class="week-item"><span>W4</span> Integrated plan</div>
+    </div>
+    <button class="btn-primary">Apply for this program</button>
+  </div>
+
+  <h2 class="section-title" style="margin-top:48px;">How it works</h2>
+  <div style="margin-bottom:48px;">
+    <div class="step"><div class="step-num">1</div><div><div class="step-title">Apply in 2 minutes</div><div class="step-desc">A short application so Troy can review your situation before you speak.</div></div></div>
+    <div class="step"><div class="step-num">2</div><div><div class="step-title">Book a free call with Troy</div><div class="step-desc">A 20–30 min honest conversation about whether this is the right fit.</div></div></div>
+    <div class="step"><div class="step-num">3</div><div><div class="step-title">Start your 30 days</div><div class="step-desc">First session within 48 hours of joining. Real support, real accountability.</div></div></div>
+  </div>
+
+  <p class="foot-note">All 3 programs are the same price. Private 1-on-1 only — not group sessions.</p>
+</div>
+
+<hr class="divider">
+<p class="screen-label">↓ Qualifier — step 1 of 3</p>
+
+<!-- ══════════════ QUALIFIER ══════════════ -->
+<div class="page">
+  <button class="back-btn"><span class="back-arrow">←</span> Back</button>
+  <span class="prog-badge">Gambling Recovery</span>
+  <h2 class="qual-q">Are you 18 or older?</h2>
+  <p class="qual-sub">Troy's program is available to adults only.</p>
+  <button class="btn-primary" style="margin-bottom:12px;font-size:17px;padding:16px;">Yes — I'm 18 or older</button>
+  <button class="btn-secondary">No — I'm under 18</button>
+  <div class="progress-wrap">
+    <div class="progress-labels"><span>Step 1 of 3</span><span>33%</span></div>
+    <div class="progress-track"><div class="progress-fill" style="width:33%"></div></div>
+  </div>
+</div>
+
+<hr class="divider">
+<p class="screen-label">↓ Qualifier — step 2 of 3 (readiness)</p>
+
+<!-- QUALIFIER STEP 2 -->
+<div class="page">
+  <button class="back-btn"><span class="back-arrow">←</span> Back</button>
+  <span class="prog-badge">Gambling Recovery</span>
+  <h2 class="qual-q">How serious are you about making a change right now?</h2>
+  <p class="qual-sub">Choose the one that fits best.</p>
+  <button class="option-btn">Just looking into options</button>
+  <button class="option-btn selected">Getting serious — I know I need to do something</button>
+  <button class="option-btn">100% ready to commit — I want to start now</button>
+  <div class="progress-wrap">
+    <div class="progress-labels"><span>Step 2 of 3</span><span>67%</span></div>
+    <div class="progress-track"><div class="progress-fill" style="width:67%"></div></div>
+  </div>
+</div>
+
+<hr class="divider">
+<p class="screen-label">↓ Apply form</p>
+
+<!-- ══════════════ APPLY ══════════════ -->
+<div class="page">
+  <button class="back-btn"><span class="back-arrow">←</span> Back</button>
+  <h1 style="font-size:30px;text-align:left;margin-bottom:4px;">Tell us about you</h1>
+  <p style="color:#9ca3af;font-size:14px;margin-bottom:32px;">Troy reviews every application personally.</p>
+
+  <label class="form-label" style="margin-bottom:12px;">Program</label>
+  <div style="margin-bottom:24px;">
+    <button class="option-btn selected" style="margin-bottom:8px;border-radius:12px;">Gambling Recovery</button>
+    <button class="option-btn" style="margin-bottom:8px;border-radius:12px;">Drug &amp; Alcohol Recovery</button>
+    <button class="option-btn" style="border-radius:12px;">Gambling + Drugs &amp; Alcohol</button>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">First name <span>*</span></label>
+    <input class="form-input" type="text" placeholder="Your first name">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Email <span>*</span></label>
+    <input class="form-input" type="email" placeholder="you@email.com">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Phone number <span>*</span></label>
+    <input class="form-input" type="tel" placeholder="+61 4XX XXX XXX">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Briefly, what's your situation? <span class="opt">(optional)</span></label>
+    <textarea class="form-input" rows="4" placeholder="Share as much or as little as you like..."></textarea>
+  </div>
+
+  <button class="btn-primary" style="font-size:16px;padding:16px;margin-top:8px;">Book My Free Call →</button>
+  <p class="foot-small">No payment now. This is just to book your free assessment call.</p>
+</div>
+
+<hr class="divider">
+<p class="screen-label">↓ Confirmed</p>
+
+<!-- ══════════════ CONFIRMED ══════════════ -->
+<div class="confirmed-wrap">
+  <div class="check-icon">✓</div>
+  <h1>You're booked, Alex.</h1>
+  <p class="sub">Troy will review your details before the call.</p>
+  <div class="card" style="text-align:left;">
+    <h2 style="font-weight:700;font-size:16px;margin-bottom:20px;">What happens next</h2>
+    <div class="next-step"><div class="step-circle">1</div><div><div class="next-step-title">Troy reviews your application</div><div class="next-step-desc">He reads your details before the call.</div></div></div>
+    <div class="next-step"><div class="step-circle">2</div><div><div class="next-step-title">Your free call</div><div class="next-step-desc">A 20–30 min honest conversation, no pressure.</div></div></div>
+    <div class="next-step"><div class="step-circle">3</div><div><div class="next-step-title">If it's a good fit</div><div class="next-step-desc">Troy sends a secure payment link after the call.</div></div></div>
+    <div class="next-step"><div class="step-circle">4</div><div><div class="next-step-title">You start</div><div class="next-step-desc">First session within 48 hours of payment.</div></div></div>
+  </div>
+  <p style="color:#6b7280;font-size:12px;padding-bottom:40px;">Keep an eye on your phone and email.</p>
+</div>
+
+</body>
+</html>
