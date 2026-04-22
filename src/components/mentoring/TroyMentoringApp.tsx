@@ -525,7 +525,7 @@ export default function TroyMentoringApp() {
   // ─── BOOK ──────────────────────────────────────────────────────────────────
   if (screen === 'book') {
     // REPLACE THIS with Troy's actual Calendly URL (e.g. https://calendly.com/troy-smith)
-    const calendlyBase = 'https://calendly.com/TROY_CALENDLY_URL';
+    const calendlyBase = 'https://calendly.com/zacsarfati1/30min';
     const calendlyUrl = `${calendlyBase}?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}`;
 
     return (
